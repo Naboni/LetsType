@@ -7,7 +7,7 @@ import {
   setType,
   setWordList,
   timerSet,
-} from "store/actions";
+} from "store/action";
 import { State } from "store/reducer";
 import "stylesheets/Header.scss";
 import "stylesheets/AnimatedTheme.scss";

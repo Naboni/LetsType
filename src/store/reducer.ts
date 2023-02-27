@@ -14,7 +14,7 @@ import {
   SET_REF,
   SET_CARET_REF,
   SET_TYPE,
-} from "./actions";
+} from "./action";
 
 export interface State {
   preferences: {

@@ -30,12 +30,11 @@ export default function Footer() {
   const { timerId } = useSelector((state: State) => state.time);
   const [showList, setShowList] = useState<boolean>(false);
   useEffect(() => {
-    const URL =
-      "https://api.github.com/repos/salmannotkhan/typing-test/contributors";
+    const URL = "https://github.com/Naboni/LetsType";
     fetch(URL)
       .then((res) => res.json())
       .then((data: Contributor[]) =>
-        data.filter((contributor) => contributor.login !== "salmannotkhan")
+        data.filter((contributor) => contributor.login !== "naboni")
       )
       .then((filtered) => setContributors(filtered));
   }, []);
@@ -52,7 +51,7 @@ export default function Footer() {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://www.github.com/salmannotkhan/typing-test"
+          href="https://github.com/Naboni/LetsType"
         >
           <span>&lt;/&gt;</span> github
         </a>
