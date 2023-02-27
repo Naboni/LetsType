@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# typing-test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This site is currently live: [Visit Here](https://lets-type.vercel.app/)
 
-## Available Scripts
+## How to run locally
 
-In the project directory, you can run:
+```zsh
+git clone https://github.com/salmannotkhan/typing-test.git
+cd typing-test
+npm install
+npm start     # to start local server at `localhost:3000`
+npm run build # to create production build run
+```
 
-### `npm start`
+## Got new ideas?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Did you know? You can add your theme and wordlist ideas into typing-test.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Here is how you can do it:
 
-### `npm test`
+### **To add new theme:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Add theme colors into `src/stylesheets/themes.scss` in following format:
 
-### `npm run build`
+```scss
+.theme-name {
+  --bg-color: background-color;
+  --font-color: font-color;
+  --hl-color: highlight-color;
+  --fg-color: forground-color;
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> **Note:**  
+> `highlight-color` is used for caret, wrong characters, timer, selected and onhover colors  
+> `forground-color` is used for correctly typed characters  
+> _Using hex codes for colors is recommended_
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **To add new wordlist:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Rename your wordlist as `<wordlist-name>.json` and place it inside `src/wordlists`.
 
-### `npm run eject`
+> **Important:**  
+> The JSON file should only contain single array of words/sentences.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### **Adding entry to options**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Add your theme/wordlist name into `src/components/Header.tsx` in options:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```tsx
+export const options: Options = {
+	time: [15, 30, 45, 60, 120],
+	theme: [
+		"default",
+		"mkbhd",
+		"mocha",
+		"coral",
+		"ocean",
+		"azure",
+		"forest",
+		"rose-milk",
+		<theme-name>
+	],
+	type: ["words", "sentences", <wordlist-name>],
+};
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+> **Important:**  
+> The following should be always same:
+>
+> - wordlist-name in `Header.tsx` and your wordlist file name
+> - theme-name in `themes.scss` and `Header.tsx`
+>
+> should always match otherwise themes won't work
 
-## Learn More
+2. Make a pull request
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. If it's good enough to merge, I'll merge it
